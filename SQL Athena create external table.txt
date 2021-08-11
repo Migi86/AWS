@@ -1,0 +1,15 @@
+CREATE EXTERNAL TABLE IF NOT EXISTS tablename (
+'id' int,
+'customername' string,
+'saledate' string
+)
+ROW FORMAT ROW FORMAT SERDE 'org.openx.data.jsonserde.JsonSerDe'
+WITH SERDEPROPERTIES (
+'serialization.format' = ',',
+'field.delim' = ',',
+'collection.delim' = '|',
+'mapkey.delim' = ':',
+'escape.delim' = '\\'
+)
+
+LOCATION 's3://'
