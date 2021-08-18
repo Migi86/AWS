@@ -1,0 +1,34 @@
+- 
+Amazon Redshift can automatically sort and perform a VACUUM DELETE operation on tables in the background. To clean up tables after a load or a series of incremental updates, you can also run the VACUUM command, either against the entire database or against individual tables
+Only the table owner or a superuser can effectively vacuum a table.
+The VACUUM process re-sorts rows and reclaims space in either a specified table or all tables in the current database in Amazon Redshift
+By default, VACUUM skips the sort phase for any table where more than 95 percent of the table’s rows are already sorted. Skipping the sort phase can significantly improve VACUUM performance. It can slow down because of the following reasons:
+– A high percentage of unsorted data
+– Large table with too many columns
+– Interleaved sort key usage
+– Irregular or infrequent use of VACUUM
+– Concurrent tables, cluster queries, DDL statements, or ETL jobs
+Use the svv_vacuum_progress query to check the status and details of your VACUUM operation. It is recommended to use the VACUUM command with the BOOST option. The BOOST option allocates additional resources to VACUUM, such as available memory and disk space.
+With the BOOST option, VACUUM operates in one window and blocks concurrent deletes and updates for the duration of the VACUUM operation.
+
+-
+The UNLOAD command unloads the result of an Amazon Redshift query to your Amazon S3 data lake in Apache Parquet, an efficient open columnar storage format for analytics. It allows to save money, freeing up memory in Redshift.
+It supports Redshift, it doesn't support Redshift spectrum.
+
+-
+COPY fails to load data to Amazon Redshift if the CSV file uses carriage returns (“\\r”, “^M”, or “0x0D” in hexadecimal) as a line terminator. 
+When the COPY command has the IGNOREHEADER parameter set to a non-zero number, Amazon Redshift skips the first line, and therefore, the entire file. No load errors are returned because the operation is technically successful
+
+-
+In AWS Glue you can’t create a data catalog in Amazon RDS. This is only applicable in AWS Glue
+
+
+
+
+-
+Amazon Athena allows you to set two types of cost controls:
+– per-query limit (amount of data scanned per query)
+– per-workgroup limit (a.k.a workgroup-wide data usage control limit)
+You can associate cloudwatch alarms to trigger SNS notifications.
+
+With these controls within Athena it is unnecessary to write lambda functions.
