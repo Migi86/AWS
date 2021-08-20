@@ -1,4 +1,4 @@
-	- 
+- 
 Amazon Redshift can automatically sort and perform a VACUUM DELETE operation on tables in the background. To clean up tables after a load or a series of incremental updates, you can also run the VACUUM command, either against the entire database or against individual tables
 Only the table owner or a superuser can effectively vacuum a table.
 The VACUUM process re-sorts rows and reclaims space in either a specified table or all tables in the current database in Amazon Redshift
